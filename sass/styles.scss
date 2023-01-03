@@ -1,0 +1,101 @@
+// $light: #bdbdbd;
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/utilities";
+$primary: #084B3E;
+$secondary: #F9E2BA;
+$success :#00C38B;
+$muted :  #BDBDBD;
+$dark:#343434;
+
+
+
+
+//Theme colors
+$custom-colors :("primary":$primary,
+    "success":$success,
+    "secondary":$secondary,
+    "muted":$muted,
+    "dark":$dark );
+$theme-colors: map_merge($theme-colors, $custom-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
+
+@font-face {
+    font-family: Capton;
+    src: url('../assets/fonts/CamptonMedium.otf')
+}
+@font-face {
+    font-family: Capton-semi-bold;
+    src: url('../assets/fonts/CamptonSemiBold.otf')
+}
+.terms::after{
+    position: absolute;
+    content: "";
+    width: 32%;
+    bottom:2px;
+    right: 0;
+    height: 0.8px;
+    background-color: #BDBDBD;
+}
+//font-family 
+$font-family-base: 'Capton', sans-serif;
+
+
+// custom font sizes
+$utilities: map-merge($utilities,
+        ("font-size": map-merge(map-get($utilities, "font-size"),
+                (values: map-merge(map-get(map-get($utilities, "font-size"), "values"),
+                        (7: 2rem, 8:1.5rem, 9:1rem, 10:0.875rem))),
+            ),
+        ));
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.bg-green-leaf {
+
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(black)), url(../assets/bg-image.jpeg);
+    background-image: linear-gradient(rgba(155, 253, 124, 0.44), #319b62ab), url(../assets/bg-image.jpeg);
+    -webkit-filter: saturate(0.65);
+    filter: saturate(0.65);
+
+}
+.text-muted {
+    color: #BDBDBD !important;
+}
+.vw-80 {
+    width: 80vw !important;
+}
+.w-80 {
+    width: 85% !important;
+}
+.border-end-radius-0{
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.logo {
+    width: 170px;
+    height: 95px;
+    background: url('../assets/logo.png');
+    background-size: cover;
+}
+.fCapton-semi-bold {
+  font-family: Capton-semi-bold;  
+}
+.form-control:focus {
+    border-color: #ced4da;
+    /* default B5 color or set your own color*/
+    outline: none !important;
+    box-shadow: none !important;
+}
+.required:after {
+    content:" *";
+    color: red;
+    position: absolute; 
+  }
